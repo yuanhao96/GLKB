@@ -1,0 +1,8 @@
+biocypher:
+  offline: true
+
+neo4j:
+  database_name: glkb
+  quote_character: '"'
+  array_delimiter: '|'
+

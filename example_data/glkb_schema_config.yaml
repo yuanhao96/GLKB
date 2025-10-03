@@ -1,0 +1,553 @@
+journal article:
+    is_a: article
+    represented_as: node
+    preferred_id: doi
+    input_label: [pubmed_article, pmc_article, other_article]
+    properties:
+        title: str
+        abstract: str
+        pubdate: int
+        authors: str[]
+        author_affiliations: str[]
+        journal: str
+        source: str
+        publication_type: str[]
+
+pubmed article:
+    is_a: journal article
+    inherit_properties: true
+    represented_as: node
+    preferred_id: pmid
+    input_label: pubmed_article
+    properties:
+        pmcid: str
+        doi: str
+        pubmedid: str     
+
+figure:
+    is_a: publication
+    represented_as: node
+    preferred_id: fid
+    input_label: publication_figure
+    properties:
+        url: str
+        caption: str
+        mention: str
+        source: str
+
+journal:
+    is_a: agent
+    represented_as: node
+    preferred_id: nlmid
+    input_label: journal
+    properties:
+        title: str
+        med_abbrevation: str
+        iso_abbrevation: str
+        issn_print: str
+        issn_online: str
+        jrid: str
+
+genomic mention:
+    is_a: text mining result
+    represented_as: node
+    preferred_id: entid
+    input_label: genomic_mention
+    properties:
+        text: str
+        normalized_name: str
+        char_start: int
+        char_end: int
+        type: str
+        source: str
+        prob: float
+
+sentence:
+    is_a: text mining result
+    represented_as: node
+    preferred_id: sentid
+    input_label: sentence
+    properties:
+        text: str
+        informative: str
+
+mesh term:
+  is_a: named thing
+  represented_as: node
+  preferred_id: mesh
+  label_in_input: mesh_term
+  properties:
+    name: str
+    synonyms: string[]
+    description: str
+    source: str
+
+gene:
+  represented_as: node
+  preferred_id: hgnc
+  label_in_input: gene
+  properties:
+    name: str
+    synonyms: string[]
+    description: str
+    source: str
+
+disease:
+  represented_as: node
+  preferred_id: ['mondo', 'doid']
+  label_in_input: disease
+  properties:
+    name: str
+    synonyms: string[]
+    description: str
+    source: str
+
+chemical entity:
+  represented_as: node
+  preferred_id: chebi
+  label_in_input: chemical
+  properties:
+    name: str
+    synonyms: string[]
+    description: str
+    source: str
+
+anatomical entity:
+  represented_as: node
+  preferred_id: ['bto', 'uberon', 'efo', 'cl']
+  label_in_input: anatomy
+  properties:
+    name: str
+    synonyms: string[]
+    description: str
+    source: str
+
+organism taxon:
+  represented_as: node
+  preferred_id: ncbitaxon
+  label_in_input: organism
+  properties:
+    name: str
+    synonyms: string[]
+    description: str
+    source: str
+
+phenotypic feature:
+  represented_as: node
+  preferred_id: hp
+  label_in_input: phenotype
+  properties:
+    name: str
+    synonyms: string[]
+    description: str
+    source: str
+
+snv:
+  represented_as: node
+  preferred_id: dbsnp
+  label_in_input: snv
+  properties:
+    rsid: str
+    ref: str
+    alt: str
+    source: str
+
+biological process:
+  represented_as: node
+  preferred_id: go
+  label_in_input: biological_process
+  properties:
+    name: str
+    description: str
+    source: str
+
+cellular component:
+  represented_as: node
+  preferred_id: go
+  label_in_input: cellular_component
+  properties:
+    name: str
+    description: str
+    source: str
+
+molecular function:
+  is_a: biological process or activity
+  represented_as: node
+  preferred_id: go
+  label_in_input: molecular_function
+  properties:
+    name: str
+    description: str
+    source: str
+
+pathway:
+  represented_as: node
+  preferred_id: reactome
+  label_in_input: pathway
+  properties:
+    name: str
+    description: str
+    source: str
+
+genomic event:
+  is_a: text mining result
+  represented_as: node
+  preferred_id: eventid
+  input_label: event
+  properties:
+    text: str
+    char_start: int
+    char_end: int
+    source: str
+
+regulation:
+  is_a: genomic event
+  represented_as: node
+  inherit_properties: true
+  preferred_id: eventid
+  input_label: event_regulation
+
+positive regulation:
+  is_a: regulation
+  represented_as: node
+  inherit_properties: true
+  preferred_id: eventid
+  input_label: event_positive_regulation
+
+negative regulation:
+  is_a: regulation
+  represented_as: node
+  inherit_properties: true
+  preferred_id: eventid
+  input_label: event_negative_regulation
+
+binding:
+  is_a: genomic event
+  represented_as: node
+  inherit_properties: true
+  preferred_id: eventid
+  input_label: event_binding
+
+phosphorylation:
+  is_a: genomic event
+  represented_as: node
+  inherit_properties: true
+  preferred_id: eventid
+  input_label: event_phosphorylation
+
+gene expression:
+  is_a: genomic event
+  represented_as: node
+  inherit_properties: true
+  preferred_id: eventid
+  input_label: event_gene_expression
+
+localization:
+  is_a: genomic event
+  represented_as: node
+  inherit_properties: true
+  preferred_id: eventid
+  input_label: event_localization
+
+transcription:
+  is_a: genomic event
+  represented_as: node
+  inherit_properties: true
+  preferred_id: eventid
+  input_label: event_transcription
+
+protein catabolism:
+  is_a: genomic event
+  represented_as: node
+  inherit_properties: true
+  preferred_id: eventid
+  input_label: event_protein_catabolism
+
+published in:
+  is_a: association
+  represented_as: edge
+  input_label: published_in
+
+cite:
+  is_a: association
+  represented_as: edge
+  input_label: cite
+  properties:
+      source: str
+
+mentions:
+    is_a: association
+    represented_as: edge
+    input_label: contain_mention
+    properties:
+        source: str
+
+mapped to:
+    is_a: association
+    represented_as: edge
+    input_label: mapped_to
+    properties:
+        source: str
+        score: float
+
+semantic relationship:
+  is_a: association
+  represented_as: edge
+  input_label: semantic_relationship
+  properties:
+    source: str
+    text: str
+    char_start: int
+    char_end: int
+
+contain term:
+  is_a: association
+  represented_as: edge
+  input_label: contain_term
+  properties:
+      normalized_name: str
+      type: str
+      prob: float
+      source: str
+
+contain figure:
+  is_a: association
+  represented_as: edge
+  input_label: contain_figure
+  properties:
+      source: str
+
+contain sentence:
+  is_a: association
+  represented_as: edge
+  input_label: contain_sentence
+
+in event:
+  is_a: semantic relationship
+  inherit_properties: true
+  represented_as: edge
+  input_label: in_event
+  properties:
+    role: str
+    factuality: str
+
+associate:
+  is_a: semantic relationship
+  inherit_properties: true
+  represented_as: edge
+  input_label: association
+  properties:
+    tail_text: str
+    tail_char_start: int
+    tail_char_end: int
+    from_article: str
+
+positive correlation:
+  is_a: semantic relationship
+  inherit_properties: true
+  represented_as: edge
+  input_label: positive_correlation
+  properties:
+    tail_text: str
+    tail_char_start: int
+    tail_char_end: int
+    from_article: str
+
+negative correlation:
+  is_a: semantic relationship
+  inherit_properties: true
+  represented_as: edge
+  input_label: negative_correlation
+  properties:
+    tail_text: str
+    tail_char_start: int
+    tail_char_end: int
+    from_article: str
+
+cotreatment:
+  is_a: semantic relationship
+  inherit_properties: true
+  represented_as: edge
+  input_label: cotreatment
+  properties:
+    tail_text: str
+    tail_char_start: int
+    tail_char_end: int
+    from_article: str
+
+drug interaction:
+  is_a: semantic relationship
+  inherit_properties: true
+  represented_as: edge
+  input_label: drug_interaction
+  properties:
+    tail_text: str
+    tail_char_start: int
+    tail_char_end: int
+    from_article: str
+
+bind:
+  is_a: semantic relationship
+  inherit_properties: true
+  represented_as: edge
+  input_label: bind
+  properties:
+    tail_text: str
+    tail_char_start: int
+    tail_char_end: int
+    from_article: str
+
+comparison:
+  is_a: semantic relationship
+  inherit_properties: true
+  represented_as: edge
+  input_label: comparison
+  properties:
+    tail_text: str
+    tail_char_start: int
+    tail_char_end: int
+    from_article: str
+
+conversion:
+  is_a: semantic relationship
+  inherit_properties: true
+  represented_as: edge
+  input_label: conversion
+  properties:
+    tail_text: str
+    tail_char_start: int
+    tail_char_end: int
+    from_article: str
+
+cooccur:
+  is_a: semantic relationship
+  inherit_properties: true
+  represented_as: edge
+  input_label: cooccur
+  properties:
+    n_article: int
+    evidence: str
+    evaluate: str
+    description: str
+
+equivalent to:
+  is_a: association
+  represented_as: edge
+  input_label: equivalent_to
+  properties:
+    source: str
+    score: float
+
+hierarchical structure:
+  is_a: association
+  represented_as: edge
+  input_label: hierarchical_structure
+  properties:
+    source: str
+    type: str
+
+ontology mapping:
+  is_a: association
+  represented_as: edge
+  input_label: ontology_mapping
+  properties:
+    source: str
+    score: float
+
+gene to pathway association:
+  represented_as: edge
+  input_label: gene_to_pathway_association
+  properties:
+    source: str
+    type: str
+    from_article: str
+
+gene to gene association:
+  represented_as: edge
+  input_label: gene_gene
+  properties:
+    source: str
+    type: str
+    from_article: str
+
+chemical affects gene association:
+  represented_as: edge
+  input_label: chemical_gene
+  properties:
+    source: str
+    type: str
+    from_article: str
+
+chemical or drug or treatment to disease or phenotypic feature association:
+  represented_as: edge
+  input_label: chemical_disease
+  properties:
+    source: str
+    type: str
+    from_article: str
+
+chemical to chemical association:
+  represented_as: edge
+  input_label: chemical_chemical
+  properties:
+    source: str
+    type: str
+    from_article: str
+
+gene to disease association:
+  represented_as: edge
+  input_label: gene_disease
+  properties:
+    source: str
+    type: str
+    from_article: str
+
+disease to phenotypic feature association:
+  represented_as: edge
+  input_label: disease_disease
+  properties:
+    source: str
+    type: str
+    from_article: str
+
+gene to go term association:
+  represented_as: edge
+  input_label: gene_go
+  properties:
+    source: str
+    type: str
+    from_article: str
+
+exposure event to outcome association:
+  represented_as: edge
+  input_label: chemical_go
+  properties:
+    source: str
+    type: str
+    from_article: str
+
+gene to expression site association:
+  represented_as: edge
+  input_label: gene_anatomy
+  properties:
+    source: str
+    type: str
+    from_article: str
+
+variant to gene association:
+  represented_as: edge
+  input_label: variant_gene
+  properties:
+    source: str
+    type: str
+    risk allele: str
+    from_article: str
+
+variant to disease association:
+  represented_as: edge
+  input_label: variant_disease
+  properties:
+    source: str
+    type: str
+    risk allele: str
+    from_article: str

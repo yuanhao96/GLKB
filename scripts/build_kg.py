@@ -27,15 +27,24 @@ bc = BioCypher(
 )
 
 files = [
-    (PubmedAdapter, '/nfs/turbo/umms-drjieliu/proj/medlineKG/data/pubmed_xml/'),
-    (JournalAdapter, '/nfs/turbo/umms-drjieliu/proj/medlineKG/data/journal_list/J_Medline.txt'),
+    # (PubmedAdapter, '/nfs/turbo/umms-drjieliu/proj/medlineKG/data/pubmed_xml/'),
+    # (JournalAdapter, '/nfs/turbo/umms-drjieliu/proj/medlineKG/data/journal_list/J_Medline.txt'),
+    # (OntologyAdapter, )
+    # (dbSNPAdapter, '/nfs/turbo/umms-drjieliu/proj/genomeKG/data/dbSNP/processed/dbSNP_snp.txt'),
+    # (ReactomeAdapter, {'data':'/nfs/turbo/umms-drjieliu/proj/medlineKG/data/reactome/ReactomePathways.txt', 'rt2gene':'/nfs/turbo/umms-drjieliu/proj/medlineKG/data/reactome/NCBI2Reactome.txt', 'rt2pub':'/nfs/turbo/umms-drjieliu/proj/medlineKG/data/reactome/ReactionPMIDS.txt', 'hier':'/nfs/turbo/umms-drjieliu/proj/medlineKG/data/reactome/ReactomePathwaysRelation.txt'}),
+    # (GOAdapter, ),
+    # (PrimeKGAdapter, '/nfs/turbo/umms-drjieliu/proj/medlineKG/data/primekg/kg.csv'),
+    # (GWASAdapter, {'snp_gene':'/nfs/turbo/umms-drjieliu/proj/genomeKG/data/GWAS/processed/SNP_intra_gene.txt', 'snp_trait': '/nfs/turbo/umms-drjieliu/proj/genomeKG/data/GWAS/processed/SNP_trait.txt'}),
+    # (OMAdapter, '/nfs/turbo/umms-drjieliu/usr/xinyubao/umls_matching/database/mappings_without_dup.csv'),
+    (PubmedAdapter, 'example_data/pubmed_xml/'),
+    (JournalAdapter, 'example_data/J_Medline.txt'),
     (OntologyAdapter, )
-    (dbSNPAdapter, '/nfs/turbo/umms-drjieliu/proj/genomeKG/data/dbSNP/processed/dbSNP_snp.txt'),
-    (ReactomeAdapter, {'data':'/nfs/turbo/umms-drjieliu/proj/medlineKG/data/reactome/ReactomePathways.txt', 'rt2gene':'/nfs/turbo/umms-drjieliu/proj/medlineKG/data/reactome/NCBI2Reactome.txt', 'rt2pub':'/nfs/turbo/umms-drjieliu/proj/medlineKG/data/reactome/ReactionPMIDS.txt', 'hier':'/nfs/turbo/umms-drjieliu/proj/medlineKG/data/reactome/ReactomePathwaysRelation.txt'}),
+    (dbSNPAdapter, 'example_data/dbSNP_snp.txt'),
+    (ReactomeAdapter, {'data':'example_data/ReactomePathways.txt', 'rt2gene':'example_data/NCBI2Reactome.txt', 'rt2pub':'example_data/ReactionPMIDS.txt', 'hier':'example_data/ReactomePathwaysRelation.txt'}),
     (GOAdapter, ),
-    (PrimeKGAdapter, '/nfs/turbo/umms-drjieliu/proj/medlineKG/data/primekg/kg.csv'),
-    (GWASAdapter, {'snp_gene':'/nfs/turbo/umms-drjieliu/proj/genomeKG/data/GWAS/processed/SNP_intra_gene.txt', 'snp_trait': '/nfs/turbo/umms-drjieliu/proj/genomeKG/data/GWAS/processed/SNP_trait.txt'}),
-    (OMAdapter, '/nfs/turbo/umms-drjieliu/usr/xinyubao/umls_matching/database/mappings_without_dup.csv'),
+    (PrimeKGAdapter, 'example_data/kg.csv'),
+    (GWASAdapter, {'snp_gene':'example_data/SNP_intra_gene.txt', 'snp_trait': 'example_data/SNP_trait.txt'}),
+    (OMAdapter, 'example_data/mappings_without_dup.csv'),
 ]
 
 logger.debug(bc.show_ontology_structure())
